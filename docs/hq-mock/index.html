@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HQ illustrative mock | Personal AI Operating System</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1c2430;
+      --muted: #5c6570;
+      --paper: #f3f0ea;
+      --card: #ffffff;
+      --line: #e2dcd2;
+      --blue: #1f4e79;
+      --blue-bg: #e7eef6;
+      --green: #245c45;
+      --green-bg: #e8f0ea;
+      --red: #8d3d3d;
+      --red-bg: #f8ecec;
+      --amber: #8a5a12;
+      --amber-bg: #f8f1dc;
+      --slate-bg: #eef1f4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, "Liberation Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+    .sheet { width: 960px; margin: 0 auto; padding: 28px 28px 40px; }
+    header {
+      background: var(--ink);
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 18px 20px 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-end;
+    }
+    header p { margin: 0; }
+    .brand { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #d5dbe3; }
+    h1 { margin: 4px 0 0; font-size: 28px; font-weight: 650; letter-spacing: -0.02em; }
+    .badge {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    nav a, button {
+      font: inherit;
+      font-size: 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      padding: 6px 12px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    button[aria-pressed="true"] { background: var(--ink); color: #ffffff; border-color: var(--ink); }
+    .note {
+      background: var(--amber-bg);
+      border: 1px solid #e4d3a8;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 0 0 18px;
+    }
+    .note strong { color: var(--amber); }
+    h2 { font-size: 18px; margin: 22px 0 10px; }
+    .floors { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 12px 10px;
+    }
+    article h3 { margin: 0 0 6px; font-size: 15px; }
+    article ul { margin: 0; padding-left: 18px; }
+    article li { margin: 2px 0; }
+    article p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+    .pill {
+      display: inline-block;
+      margin-top: 8px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 650;
+      background: var(--slate-bg);
+      color: var(--muted);
+    }
+    article.pending { background: var(--amber-bg); border-color: #e4d3a8; }
+    article.pending .pill { background: #ffffff; color: var(--amber); }
+    article.closed { background: var(--red-bg); border-color: #e4c8c8; }
+    article.closed .pill { background: #ffffff; color: var(--red); }
+    article.human { background: var(--blue-bg); border-color: #c5d4e6; }
+    article.lead { background: var(--green-bg); border-color: #c9ddd2; }
+    .tree { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+    .tree ul { margin: 4px 0 4px 18px; padding: 0; list-style: none; }
+    .tree > ul { margin-left: 0; }
+    .tree li { margin: 3px 0; padding-left: 12px; border-left: 2px solid var(--line); }
+    .who { font-weight: 650; }
+    .role { color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; }
+    th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 14px; }
+    th { background: var(--slate-bg); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .hint { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
+    #empty { background: var(--slate-bg); border-radius: 10px; padding: 10px 12px; }
+    .tag { border-radius: 999px; padding: 2px 8px; font-size: 12px; font-weight: 650; background: var(--slate-bg); color: var(--muted); }
+    .tag.pending { background: var(--amber-bg); color: var(--amber); }
+    .tag.closed { background: var(--red-bg); color: var(--red); }
+    .tag.human { background: var(--blue-bg); color: var(--blue); }
+    .timeline { list-style: none; margin: 0; padding: 0; }
+    .timeline li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
+    .when { margin: 0; font-size: 13px; color: var(--blue); font-weight: 650; }
+    footer { margin-top: 16px; color: var(--muted); font-size: 14px; }
+    footer a { color: var(--blue); }
+  </style>
+</head>
+<body>
+  <div class="sheet" id="sheet">
+    <header>
+      <div>
+        <p class="brand">Personal AI Operating System</p>
+        <h1>HQ</h1>
+      </div>
+      <p class="badge">Illustrative mock</p>
+    </header>
+    <nav>
+      <a href="#floors">Floors</a>
+      <a href="#chart">Org chart</a>
+      <a href="#people">People</a>
+      <a href="#activity">Activity</a>
+      <a href="../../README.md">Case study</a>
+    </nav>
+    <p class="note"><strong>Illustrative mock.</strong> This is not a live dashboard and not a screenshot of one. Seat names come from the public case study. A live state is shown only where that case study states it. Other rows say Not published.</p>
+
+    <h2 id="floors">Office floors</h2>
+    <div class="floors">
+      <article class="human">
+        <h3>Owner</h3>
+        <ul><li>Tishan Perera, Owner</li></ul>
+      </article>
+      <article class="lead">
+        <h3>Chief of Staff</h3>
+        <ul><li>Amanda, Chief of Staff &amp; COO</li></ul>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>Mailroom</h3>
+        <ul>
+          <li>Chief of Mailroom</li>
+          <li>Head of Gmail</li>
+          <li>Head of WhatsApp</li>
+        </ul>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>YouTube</h3>
+        <ul>
+          <li>Chief of YouTube</li>
+          <li>YouTube Analyst</li>
+          <li>Script Writer</li>
+        </ul>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>Storage</h3>
+        <p>Files and knowledge.</p>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>Investments</h3>
+        <ul><li>Chief of Investments</li></ul>
+        <p>Long-term holds only.</p>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>Gold Fundamentals</h3>
+        <ul><li>Gold Fundamentals researcher</li></ul>
+        <span class="pill">Not published</span>
+      </article>
+      <article class="pending">
+        <h3>Credit</h3>
+        <p>Seat defined. Intentionally unhired.</p>
+        <span class="pill">Pending</span>
+      </article>
+      <article>
+        <h3>AI Systems</h3>
+        <ul><li>Rio, AI Systems Architect &amp; Lead Developer</li></ul>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>Design</h3>
+        <ul><li>Lex, Chief Design Engineer</li></ul>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>OS Tester</h3>
+        <p>QA.</p>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>Clay Avatar Artist</h3>
+        <p>Dashboard art.</p>
+        <span class="pill">Not published</span>
+      </article>
+      <article>
+        <h3>LinkedIn Growth &amp; Career Acquisition</h3>
+        <ul>
+          <li>Director</li>
+          <li>Profile &amp; Branding</li>
+          <li>Content</li>
+          <li>Career &amp; Networking</li>
+        </ul>
+        <span class="pill">Not published</span>
+      </article>
+      <article class="closed">
+        <h3>Research</h3>
+        <p>Department closed. No seat names are published.</p>
+        <span class="pill">Closed</span>
+      </article>
+      <article class="closed">
+        <h3>Trading</h3>
+        <p>Shut down 17 November 2026. Agents deleted.</p>
+        <span class="pill">Closed</span>
+      </article>
+    </div>
+
+    <h2 id="chart">Top-down org chart</h2>
+    <div class="tree">
+      <ul>
+        <li><span class="who">Tishan Perera</span> <span class="role">Owner</span>
+          <ul>
+            <li><span class="who">Amanda</span> <span class="role">Chief of Staff &amp; COO</span>
+              <ul>
+                <li><span class="who">Chief of Mailroom</span>
+                  <ul>
+                    <li>Head of Gmail</li>
+                    <li>Head of WhatsApp</li>
+                  </ul>
+                </li>
+                <li><span class="who">Chief of YouTube</span>
+                  <ul>
+                    <li>YouTube Analyst</li>
+                    <li>Script Writer</li>
+                  </ul>
+                </li>
+                <li><span class="who">Storage</span> <span class="role">files and knowledge</span></li>
+                <li><span class="who">Chief of Investments</span> <span class="role">long-term holds only</span></li>
+                <li><span class="who">Gold Fundamentals researcher</span></li>
+                <li><span class="who">Credit</span> <span class="role">Pending, intentionally unhired</span></li>
+                <li><span class="who">Rio</span> <span class="role">AI Systems Architect &amp; Lead Developer</span></li>
+                <li><span class="who">Lex</span> <span class="role">Chief Design Engineer</span></li>
+                <li><span class="who">OS Tester</span> <span class="role">QA</span></li>
+                <li><span class="who">Clay Avatar Artist</span> <span class="role">dashboard art</span></li>
+                <li><span class="who">Director</span> <span class="role">LinkedIn Growth &amp; Career Acquisition</span>
+                  <ul>
+                    <li>Profile &amp; Branding</li>
+                    <li>Content</li>
+                    <li>Career &amp; Networking</li>
+                  </ul>
+                </li>
+                <li><span class="who">Research</span> <span class="role">Closed</span></li>
+                <li><span class="who">Trading</span> <span class="role">Closed, 17 November 2026, agents deleted</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h2 id="people">People</h2>
+    <div class="filters" role="group" aria-label="Filter by state">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="working">Working</button>
+      <button type="button" data-filter="waiting">Waiting</button>
+      <button type="button" data-filter="pending">Pending</button>
+      <button type="button" data-filter="closed">Closed</button>
+      <button type="button" data-filter="not_published">Not published</button>
+    </div>
+    <p class="hint" id="count"></p>
+    <p class="hint">Waiting covers Parked and Blocked-on-owner. This public mock has no row in Working or Waiting.</p>
+    <p id="empty" hidden>No public row is in this state.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Seat</th>
+          <th>Role</th>
+          <th>Reports to</th>
+          <th>State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-state="human"><td>Tishan Perera</td><td>Owner</td><td>Top of the org</td><td><span class="tag human">Human owner</span></td></tr>
+        <tr data-state="not_published"><td>Amanda</td><td>Chief of Staff &amp; COO</td><td>Tishan Perera</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Chief of Mailroom</td><td>Chief of Mailroom</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Head of Gmail</td><td>Head of Gmail</td><td>Chief of Mailroom</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Head of WhatsApp</td><td>Head of WhatsApp</td><td>Chief of Mailroom</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Chief of YouTube</td><td>Chief of YouTube</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>YouTube Analyst</td><td>YouTube Analyst</td><td>Chief of YouTube</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Script Writer</td><td>Script Writer</td><td>Chief of YouTube</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Storage</td><td>Files and knowledge</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Chief of Investments</td><td>Chief of Investments</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Gold Fundamentals researcher</td><td>Gold Fundamentals researcher</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="pending"><td>Credit</td><td>Credit</td><td>Amanda</td><td><span class="tag pending">Pending</span></td></tr>
+        <tr data-state="not_published"><td>Rio</td><td>AI Systems Architect &amp; Lead Developer</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Lex</td><td>Chief Design Engineer</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>OS Tester</td><td>QA</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Clay Avatar Artist</td><td>Dashboard art</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Director</td><td>Director, LinkedIn Growth &amp; Career Acquisition</td><td>Amanda</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Profile &amp; Branding</td><td>Profile &amp; Branding specialist</td><td>Director</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Content</td><td>Content specialist</td><td>Director</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="not_published"><td>Career &amp; Networking</td><td>Career &amp; Networking specialist</td><td>Director</td><td><span class="tag">Not published</span></td></tr>
+        <tr data-state="closed"><td>Research</td><td>Department closed</td><td>Amanda</td><td><span class="tag closed">Closed</span></td></tr>
+        <tr data-state="closed"><td>Trading</td><td>Shut down 17 November 2026. Agents deleted.</td><td>Amanda</td><td><span class="tag closed">Closed</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="activity">Activity</h2>
+    <ol class="timeline">
+      <li>
+        <p class="when">17 November 2026</p>
+        <p>The owner shut down the Trading department and deleted its agents. The pilot ledger was paper only. Real brokerage orders were prohibited. Results are omitted.</p>
+      </li>
+      <li>
+        <p class="when">Not published</p>
+        <p>Other activity stays off this public mock.</p>
+      </li>
+    </ol>
+    <footer>
+      <p>Illustrative mock for the public case study. <a href="../../README.md">Read the case study</a>. <a href="../../data/org.json">Seat data</a>.</p>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll("[data-filter]");
+      var rows = document.querySelectorAll("tbody tr");
+      var empty = document.getElementById("empty");
+      var count = document.getElementById("count");
+      function apply(filter) {
+        var shown = 0;
+        rows.forEach(function (row) {
+          var ok = filter === "all" || row.getAttribute("data-state") === filter;
+          row.hidden = !ok;
+          if (ok) shown += 1;
+        });
+        empty.hidden = shown !== 0;
+        count.textContent = "Rows in view: " + shown;
+        buttons.forEach(function (btn) {
+          btn.setAttribute("aria-pressed", btn.getAttribute("data-filter") === filter ? "true" : "false");
+        });
+      }
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          apply(btn.getAttribute("data-filter"));
+        });
+      });
+      apply("all");
+    })();
+  </script>
+</body>
+</html>
