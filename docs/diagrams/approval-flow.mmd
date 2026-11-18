@@ -1,0 +1,17 @@
+flowchart TD
+  start["Seat prepares work"] --> gate{"Does a later step need the owner?"}
+  gate -->|Work stays inside the org| inside["Continue. Drafts remain drafts."]
+  gate -->|Sending a message, email, or post| draft["Hand the owner a draft"]
+  draft --> send["Owner sends or posts"]
+  gate -->|Job application, hire, restructure, trade, or security change| ask["Ask for explicit owner approval"]
+  ask -->|Approved| act["Do the approved action"]
+  ask -->|Not approved| stop["Leave it undone"]
+  gate -->|GitHub change| pr["Open a pull request"]
+  pr --> merge["Owner merges"]
+  gate -->|Private financial data| money["Share it with the owner only. Mask account numbers to the last 4."]
+  classDef owner fill:#e7eef6,stroke:#1f4e79,color:#1c2430
+  classDef inside fill:#e8f0ea,stroke:#245c45,color:#1c2430
+  classDef stop fill:#f8ecec,stroke:#8d3d3d,color:#2b1d1d
+  class send,merge,ask,money,act owner
+  class inside inside
+  class stop stop

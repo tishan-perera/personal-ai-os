@@ -1,0 +1,350 @@
+{
+  "name": "Personal AI Operating System",
+  "internal_name": "Grokbot organization",
+  "id_note": "Ids in this file are public labels for the case study. They are not internal system ids.",
+  "state_note": "Live state is omitted as not_published unless this case study states it. not_published is an omission, not an operating state. Operating states are Working, Waiting, Closed, and Pending. Waiting substates are Parked and Blocked-on-owner.",
+  "state_taxonomy": [
+    {"id": "working", "label": "Working"},
+    {"id": "waiting", "label": "Waiting", "substates": ["Parked", "Blocked-on-owner"]},
+    {"id": "closed", "label": "Closed"},
+    {"id": "pending", "label": "Pending"}
+  ],
+  "owner": {
+    "id": "tishan",
+    "name": "Tishan Perera",
+    "kind": "human",
+    "role": "Owner"
+  },
+  "routines": [
+    {
+      "id": "weekday-morning-brief",
+      "from": "amanda",
+      "to": "tishan",
+      "when": "weekday morning",
+      "sections": [
+        "org status counts",
+        "priorities",
+        "decisions needed",
+        "usage limit",
+        "tomorrow's calendar"
+      ]
+    },
+    {
+      "id": "weekly-chief-kpi",
+      "when": "weekly",
+      "who": "each chief"
+    }
+  ],
+  "dashboard_views": [
+    "office floors per department",
+    "top-down org chart",
+    "people list with filters",
+    "activity timeline"
+  ],
+  "rules": [
+    "Agents need explicit owner approval to send messages or emails, post, apply to jobs, trade, hire, or change security.",
+    "Outbound messages are drafted for the owner to send.",
+    "The org cannot hire or restructure without owner authorization.",
+    "GitHub changes go only through pull requests the owner merges.",
+    "Private financial data is shared only with the owner.",
+    "Account numbers are masked to the last 4.",
+    "Each chief has a weekly KPI.",
+    "Dashboard polish needs a business KPI and a usage check first.",
+    "The Trading pilot used a paper-only simulated ledger. Real brokerage orders were prohibited. Live trading required explicit owner authorization."
+  ],
+  "related_public_repos": [
+    {
+      "url": "https://github.com/tishan-perera/personal-ai-os-demo",
+      "note": "Fictional runnable clone called Atrium."
+    },
+    {"url": "https://github.com/tishan-perera/close-recon-assistant"},
+    {"url": "https://github.com/tishan-perera/fpa-driver-model"},
+    {"url": "https://github.com/tishan-perera/poc.mcp-finance-tools"}
+  ],
+  "departments": [
+    {
+      "id": "mailroom",
+      "name": "Mailroom",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Chief of Mailroom over Head of Gmail and Head of WhatsApp."
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Chief of YouTube over YouTube Analyst and Script Writer."
+    },
+    {
+      "id": "storage",
+      "name": "Storage",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Files and knowledge."
+    },
+    {
+      "id": "investments",
+      "name": "Investments",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Long-term holds only."
+    },
+    {
+      "id": "gold-fundamentals",
+      "name": "Gold Fundamentals",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "The Gold Fundamentals researcher reports to Amanda."
+    },
+    {
+      "id": "credit",
+      "name": "Credit",
+      "reports_to": "amanda",
+      "state": "pending",
+      "notes": "Seat defined. Intentionally unhired."
+    },
+    {
+      "id": "ai-systems",
+      "name": "AI Systems",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Rio, AI Systems Architect and Lead Developer."
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Lex, Chief Design Engineer."
+    },
+    {
+      "id": "os-tester",
+      "name": "OS Tester",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "QA."
+    },
+    {
+      "id": "clay-avatar",
+      "name": "Clay Avatar Artist",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Dashboard art."
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn Growth & Career Acquisition",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Director, plus Profile & Branding, Content, and Career & Networking specialists."
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "reports_to": "amanda",
+      "state": "closed",
+      "notes": "Department closed. No seat names are published."
+    },
+    {
+      "id": "trading",
+      "name": "Trading",
+      "reports_to": "amanda",
+      "state": "closed",
+      "closed_on": "2026-11-17",
+      "notes": "Pilot used a paper-only simulated ledger. Real brokerage orders were prohibited. Live trading required explicit owner authorization. The owner shut the department down on 17 November 2026 and deleted its agents."
+    }
+  ],
+  "seats": [
+    {
+      "id": "amanda",
+      "name": "Amanda",
+      "role": "Chief of Staff & COO",
+      "kind": "agent",
+      "department_id": null,
+      "reports_to": "tishan",
+      "state": "not_published",
+      "notes": "Runs the org, people ops within owner approval gates, and the department chiefs."
+    },
+    {
+      "id": "chief-of-mailroom",
+      "name": "Chief of Mailroom",
+      "role": "Chief of Mailroom",
+      "kind": "agent",
+      "department_id": "mailroom",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "head-of-gmail",
+      "name": "Head of Gmail",
+      "role": "Head of Gmail",
+      "kind": "agent",
+      "department_id": "mailroom",
+      "reports_to": "chief-of-mailroom",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "head-of-whatsapp",
+      "name": "Head of WhatsApp",
+      "role": "Head of WhatsApp",
+      "kind": "agent",
+      "department_id": "mailroom",
+      "reports_to": "chief-of-mailroom",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "chief-of-youtube",
+      "name": "Chief of YouTube",
+      "role": "Chief of YouTube",
+      "kind": "agent",
+      "department_id": "youtube",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "youtube-analyst",
+      "name": "YouTube Analyst",
+      "role": "YouTube Analyst",
+      "kind": "agent",
+      "department_id": "youtube",
+      "reports_to": "chief-of-youtube",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "script-writer",
+      "name": "Script Writer",
+      "role": "Script Writer",
+      "kind": "agent",
+      "department_id": "youtube",
+      "reports_to": "chief-of-youtube",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "storage-seat",
+      "name": "Storage",
+      "role": "Files and knowledge",
+      "kind": "agent",
+      "department_id": "storage",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Files and knowledge."
+    },
+    {
+      "id": "chief-of-investments",
+      "name": "Chief of Investments",
+      "role": "Chief of Investments",
+      "kind": "agent",
+      "department_id": "investments",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Long-term holds only."
+    },
+    {
+      "id": "gold-researcher",
+      "name": "Gold Fundamentals researcher",
+      "role": "Gold Fundamentals researcher",
+      "kind": "agent",
+      "department_id": "gold-fundamentals",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Reports to Amanda."
+    },
+    {
+      "id": "credit-seat",
+      "name": "Credit",
+      "role": "Credit",
+      "kind": "agent",
+      "department_id": "credit",
+      "reports_to": "amanda",
+      "state": "pending",
+      "notes": "Seat defined. Intentionally unhired."
+    },
+    {
+      "id": "rio",
+      "name": "Rio",
+      "role": "AI Systems Architect & Lead Developer",
+      "kind": "agent",
+      "department_id": "ai-systems",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "lex",
+      "name": "Lex",
+      "role": "Chief Design Engineer",
+      "kind": "agent",
+      "department_id": "design",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "os-tester-seat",
+      "name": "OS Tester",
+      "role": "QA",
+      "kind": "agent",
+      "department_id": "os-tester",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "QA."
+    },
+    {
+      "id": "clay-avatar-artist",
+      "name": "Clay Avatar Artist",
+      "role": "Dashboard art",
+      "kind": "agent",
+      "department_id": "clay-avatar",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": "Dashboard art."
+    },
+    {
+      "id": "linkedin-director",
+      "name": "Director",
+      "role": "Director, LinkedIn Growth & Career Acquisition",
+      "kind": "agent",
+      "department_id": "linkedin",
+      "reports_to": "amanda",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "linkedin-profile-branding",
+      "name": "Profile & Branding",
+      "role": "Profile & Branding specialist",
+      "kind": "agent",
+      "department_id": "linkedin",
+      "reports_to": "linkedin-director",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "linkedin-content",
+      "name": "Content",
+      "role": "Content specialist",
+      "kind": "agent",
+      "department_id": "linkedin",
+      "reports_to": "linkedin-director",
+      "state": "not_published",
+      "notes": ""
+    },
+    {
+      "id": "linkedin-career-networking",
+      "name": "Career & Networking",
+      "role": "Career & Networking specialist",
+      "kind": "agent",
+      "department_id": "linkedin",
+      "reports_to": "linkedin-director",
+      "state": "not_published",
+      "notes": ""
+    }
+  ]
+}
