@@ -1,3 +1,5 @@
+<img src="docs/personal-ai-os-hero.svg" alt="Personal AI OS. A multi-agent organization: a chief-of-staff agent, department seats, and owner approval gates. Case study · Sanitized, no private data." width="100%">
+
 # Tishan Perera — Personal AI Operating System
 
 A public case study of a personal multi-agent organization: chief of staff Amanda, department seats, and owner approval before a message is sent, a job is applied for, a hire is made, or a trade is placed.
